@@ -22,6 +22,8 @@ public class MainMenuScript : MonoBehaviour {
     {
         cameraTransform = Camera.main.transform;
 
+        // Load using Thumbnail + auto thumbnail adder
+        /*
         Sprite[] thumbnails = Resources.LoadAll<Sprite>("Levels");
 
         foreach (Sprite thumbnail in thumbnails)
@@ -34,6 +36,7 @@ public class MainMenuScript : MonoBehaviour {
             string sceneName = thumbnail.name;
             container.GetComponent<Button>().onClick.AddListener(() => loadLevel(sceneName));
         }
+        */
     }
 
     private void Update()
@@ -44,10 +47,10 @@ public class MainMenuScript : MonoBehaviour {
         }
     }
 
-    void loadLevel(string sceneName)
+    /*public void loadLevel(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    }
+    }*/
 
     public void LookAtMenu(Transform menuTransform)
     {
