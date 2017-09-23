@@ -15,7 +15,7 @@ public class MainMenuScript : MonoBehaviour {
 
     private void Awake()
     {
-        SoundManagerScript.Instance.PlayBGM(AudioClipID.BGM_TEST);
+        //SoundManagerScript.Instance.PlayBGM(AudioClipID.BGM_TEST);
     }
 
     private void Start()

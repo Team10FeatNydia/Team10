@@ -25,7 +25,7 @@ public class EnemyScript : MonoBehaviour {
 		{
 			LockOff();
 			LockOn();
-			PlayerScript.instance.target = this;
+			MovementScript.instance.target = this;
 		}
 		else
 		{
@@ -41,11 +41,11 @@ public class EnemyScript : MonoBehaviour {
 
 	void LockOff()
 	{
-		if(PlayerScript.instance.target != null)
+		if(MovementScript.instance.target != null)
 		{
-			PlayerScript.instance.target.myMat.color = Color.red;
-			PlayerScript.instance.target.targeted = false;
-			PlayerScript.instance.target = null;
+			MovementScript.instance.target.myMat.color = Color.red;
+			MovementScript.instance.target.targeted = false;
+			MovementScript.instance.target = null;
 		}
 	}
 

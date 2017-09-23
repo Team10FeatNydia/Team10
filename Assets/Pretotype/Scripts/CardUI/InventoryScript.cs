@@ -7,6 +7,8 @@ public class InventoryScript : MonoBehaviour, IHasChanged {
 	[SerializeField] Transform slots;
 	[SerializeField] Text inventoryText;
 
+	public GameObject CanvasObject;
+
 	// Use this for initialization
 	void Start () {
 		HasChanged ();
@@ -28,10 +30,15 @@ public class InventoryScript : MonoBehaviour, IHasChanged {
 		inventoryText.text = builder.ToString ();
 	}
 	#endregion
+
+	public void MakeActive()
+	{
+		CanvasObject.SetActive(true);
+	}
 }
 
-
-namespace UnityEngine.EventSystems {
+namespace UnityEngine.EventSystems 
+{
 	public interface IHasChanged : IEventSystemHandler {
 		void HasChanged();
 	}

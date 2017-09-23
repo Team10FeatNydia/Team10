@@ -28,7 +28,8 @@ public class PlayerScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 
 		Swipe();
 
@@ -85,8 +86,6 @@ public class PlayerScript : MonoBehaviour {
 		{
 			swiped = false;
 		}
-
-
 	}
 
 	public void Swipe()
