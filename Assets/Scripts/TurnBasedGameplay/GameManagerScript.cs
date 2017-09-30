@@ -6,13 +6,13 @@ public enum GameStates
 {
     OVERWORLD,
     BATTLE,
+    GAMEOVER
 }
 
     public class GameManagerScript : MonoBehaviour {
 
     public static GameManagerScript Instance;
-    public GameStates curState = GameStates.OVERWORLD;
-    Camera playerBattleCamera;
+    public GameStates curState;
 
     void Awake()
     {
@@ -21,21 +21,11 @@ public enum GameStates
 
     void Start()
     {
-        playerBattleCamera = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Camera>();
-        playerBattleCamera.gameObject.SetActive(false);
+        curState = GameStates.BATTLE;
     }
 
     // Update is called once per frame
     void Update () {
-        if (curState == GameStates.OVERWORLD)
-        {
-            Camera.main.gameObject.SetActive(true);
-            playerBattleCamera.gameObject.SetActive(false);
-        }
-        else if (curState == GameStates.BATTLE)
-        {
-            playerBattleCamera.gameObject.SetActive(true);
-            BattleCanvasScript.Instance.gameObject.SetActive(true);
-        }
+
     }
 }

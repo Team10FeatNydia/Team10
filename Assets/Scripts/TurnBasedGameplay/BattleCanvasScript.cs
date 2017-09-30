@@ -9,7 +9,6 @@ public class BattleCanvasScript : MonoBehaviour {
     void Awake()
     {
         Instance = this;
-        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
