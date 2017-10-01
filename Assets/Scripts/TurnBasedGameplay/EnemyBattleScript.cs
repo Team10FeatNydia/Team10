@@ -12,6 +12,7 @@ public class EnemyBattleScript : MonoBehaviour {
     public bool targeted;
     public PlayerBattleScript player;
 
+
     // Use this for initialization
     void Start()
     {
