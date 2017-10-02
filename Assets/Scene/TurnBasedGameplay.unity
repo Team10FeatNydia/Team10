@@ -375,7 +375,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enemy Locked On
+  m_Text: text
 --- !u!222 &422769510
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -560,20 +560,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -1159,5 +1145,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   attack: 2
-  targeted: 0
+  targeted: 1
   player: {fileID: 1921542371}
+  showGUI: 0
+  hpText: {fileID: 1904205511}
+  onTarget: {fileID: 422769509}
+  winText: {fileID: 0}
+  easeTime: 0

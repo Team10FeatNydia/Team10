@@ -11,7 +11,13 @@ public class EnemyBattleScript : MonoBehaviour {
     float posY;
     public bool targeted;
     public PlayerBattleScript player;
+	public bool showGUI;
+	public Text hpText;
+	public Text onTarget;
 
+
+
+	public float easeTime; 
 
     // Use this for initialization
     void Start()
@@ -19,6 +25,7 @@ public class EnemyBattleScript : MonoBehaviour {
         targeted = false;
         posX = this.gameObject.transform.position.x;
         posY = this.gameObject.transform.position.y;
+		//hpText.color = Color.clear;
     }
 
     // Update is called once per frame
@@ -37,10 +44,14 @@ public class EnemyBattleScript : MonoBehaviour {
             }
         }
 
-        if (targeted)
-        {
+		if (targeted) {
+			showGUI = true;
+		}
+		else 
+		{
+			showGUI = false;
+		}
 
-        }
 
         if (BattleManagerScript.Instance.currTurn == BattleStates.ENEMY_TURN)
         {
@@ -52,6 +63,29 @@ public class EnemyBattleScript : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+
     }
+
+
+	void OnGUI()
+	{
+		if (showGUI) {
+
+			onTarget.text = "Enemy Locked On";
+			hpText.text = "EnemyHealth" + health.ToString ();
+			//hpText.color = Color.Lerp (hpText.color, Color.red, Time.deltaTime * easeTime);
+			if (health <= 0) {
+				onTarget.text = "you win, enemy dead";
+			}
+		} 
+		else 
+		{
+			onTarget.text = "Please Select a Enemy";
+
+
+				hpText.color = Color.Lerp (hpText.color, Color.red, Time.deltaTime * easeTime);
+			Debug.Log ("drfgfd");
+		}
+	}
  
 }
