@@ -13,7 +13,7 @@ public class ManagerControllerScript : MonoBehaviour
 		{
 			if(mInstance == null)
 			{
-				GameObject tempObject = GameObject.FindWithTag("ManagerController");
+				GameObject tempObject = GameObject.FindWithTag("GameController");
 
 				if(tempObject == null)
 				{
@@ -39,7 +39,7 @@ public class ManagerControllerScript : MonoBehaviour
 	public GameObject soundManagerPrefab;
 	public GameObject pauseMenuManagerPrefab;
 
-	//[Header("In-Scene Managers")]
-	//public GameManagerScript gameManager;
-	//public SoundManagerScript SoundManager;
+	[Header("In-Scene Managers")]
+	public SoundManagerScript soundManager;
+	public GameManagerScript gameManager;
 }
