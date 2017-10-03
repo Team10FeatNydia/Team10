@@ -7,7 +7,6 @@ public class PlayerBattleScript : MonoBehaviour {
     //Values added in the Inspector.
     public int health;
     public int attack;
-    public EnemyBattleScript target;
 
 	// Use this for initialization
 	void Start () {
@@ -19,11 +18,5 @@ public class PlayerBattleScript : MonoBehaviour {
 		
 	}
 
-    public void Attack() {
-        if (target.targeted)
-        {
-            target.health -= attack;
-            BattleManagerScript.Instance.currTurn = BattleStates.ENEMY_TURN;
-        }
-    }
+
 }

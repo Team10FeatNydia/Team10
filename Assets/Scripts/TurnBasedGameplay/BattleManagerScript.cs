@@ -28,11 +28,11 @@ public class BattleManagerScript : MonoBehaviour {
 	void Update () {
         if (currTurn != BattleStates.PLAYER_TURN)
         {
-            attackButton.interactable = false;
+
         }
         else if (currTurn == BattleStates.PLAYER_TURN)
         {
-            attackButton.interactable = true;
+
         }
     }
 }

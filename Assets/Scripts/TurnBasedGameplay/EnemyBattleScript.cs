@@ -84,7 +84,6 @@ public class EnemyBattleScript : MonoBehaviour {
 
 
 				hpText.color = Color.Lerp (hpText.color, Color.red, Time.deltaTime * easeTime);
-			Debug.Log ("drfgfd");
 		}
 	}
  
