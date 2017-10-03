@@ -226,6 +226,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114616366910370784, guid: bc8439ba9c8f7e44c96c8751b68b3abb,
+        type: 2}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1315369882}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc8439ba9c8f7e44c96c8751b68b3abb, type: 2}
   m_IsPrefabParent: 0
@@ -268,16 +273,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114822262818667200, guid: dd47058f487c8fd45b7f04dc3f5fc679,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1315369882}
-    - target: {fileID: 114433090901712258, guid: dd47058f487c8fd45b7f04dc3f5fc679,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1315369882}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd47058f487c8fd45b7f04dc3f5fc679, type: 2}
   m_IsPrefabParent: 0
