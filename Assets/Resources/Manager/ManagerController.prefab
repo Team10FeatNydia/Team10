@@ -57,8 +57,10 @@ MonoBehaviour:
     type: 2}
   pauseMenuManagerPrefab: {fileID: 1405268816325394, guid: dd47058f487c8fd45b7f04dc3f5fc679,
     type: 2}
-  battleManagerPrefab: {fileID: 0}
-  cardManagerPrefab: {fileID: 0}
+  battleManagerPrefab: {fileID: 1124707781867930, guid: 82f548f746d788849aa98e0a6942623f,
+    type: 2}
+  cardManagerPrefab: {fileID: 1922697052120150, guid: dd22ce55a7d576042989b91306b514cf,
+    type: 2}
   soundManager: {fileID: 0}
   gameManager: {fileID: 0}
   battleManager: {fileID: 0}
