@@ -5,43 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour 
 {
+	private bool isTap = false;
+	private float startYPos;
+	private Vector3 endPoint;
+	public float duration = 5.0f;
 	public GameObject player;
 
-	private Vector3 startPos;
-	private Vector3 endPos;
-	public float distance;
-
-	// Time to move from point A to point B
-	public float lerpTime = 5.0f;
-	private float currLerpTime = 0.0f;
-
-	public bool isTap = false;
-
-	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
-		startPos = player.transform.position;
-		endPos = player.transform.position + Vector3.forward * distance;
+		startYPos = player.transform.position.y;
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.touchCount == 1)
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 		{
-			isTap = true;
-		}
+			RaycastHit hit;
+			Ray ray;
 
-		if (isTap == true) 
-		{
-			currLerpTime += Time.deltaTime;
-			if (currLerpTime >= lerpTime) 
+			ray = Camera.main.ScreenPointToRay (Input.GetTouch (0).position);
+
+			if (Physics.Raycast(ray,out hit))
 			{
-				currLerpTime = lerpTime;
+				isTap = true;
+				endPoint = hit.point;
+				endPoint.y = startYPos;
 			}
 
-			float percentage = currLerpTime / lerpTime;
-			player.transform.position = Vector3.Lerp (startPos, endPos, percentage);
+		}
+
+		if (isTap && !Mathf.Approximately (gameObject.transform.position.magnitude, endPoint.magnitude))
+		{ 
+			gameObject.transform.position = Vector3.Lerp (gameObject.transform.position, endPoint, 1 / (duration * (Vector3.Distance (gameObject.transform.position, endPoint))));
+		}
+		else if (isTap && Mathf.Approximately (gameObject.transform.position.magnitude, endPoint.magnitude)) 
+		{
+			isTap = false;
 		}
 	}
 

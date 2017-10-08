@@ -11,6 +11,7 @@ public class EventPopOutWindow : MonoBehaviour
 	{
 		eventCanvas = eventCanvasObj.GetComponent<Canvas> ();
 		eventCanvas.enabled = false;
+		GameObject.Find ("Player").GetComponent<PlayerMovement> ().enabled = true;
 	}
 
 	void OnTriggerEnter (Collider other)
@@ -18,11 +19,13 @@ public class EventPopOutWindow : MonoBehaviour
 		if (other.gameObject.tag == "Player") 
 		{
 			eventCanvas.enabled = true;
+			GameObject.Find ("Player").GetComponent<PlayerMovement> ().enabled = false;
 		}
 	}
 
 	void OnTriggerExit (Collider other)
 	{
 		eventCanvas.enabled = false;
+		GameObject.Find ("Player").GetComponent<PlayerMovement> ().enabled = true;
 	}
 }
