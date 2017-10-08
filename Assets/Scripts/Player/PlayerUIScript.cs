@@ -2,23 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBattleScript : MonoBehaviour {
-
-    //Values added in the Inspector.
-    public int health;
-    public int attack;
-
-	public int manaPoints = 2;
+public class PlayerUIScript : MonoBehaviour 
+{
+	[HideInInspector]
+	public PlayerManager self;
 
 	// Use this for initialization
 	void Start () {
- 		
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-
-
 }

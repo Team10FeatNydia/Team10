@@ -3,27 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour 
+public class PlayerMovementScript : MonoBehaviour 
 {
-	public GameObject player;
+	[HideInInspector]
+	public PlayerManager self;
 
-	private Vector3 startPos;
-	private Vector3 endPos;
+	[Header("Movement")]
 	public float distance;
-
 	// Time to move from point A to point B
 	public float lerpTime = 5.0f;
 	private float currLerpTime = 0.0f;
+	private Vector3 startPos;
+	private Vector3 endPos;
 
+	[Header("BooleanSettings")]
 	public bool isTap = false;
 
+	#region Movement
 	// Use this for initialization
 	void Start () 
 	{
-		startPos = player.transform.position;
-		endPos = player.transform.position + Vector3.forward * distance;
+		startPos = self.transform.position;
+		endPos = self.transform.position + Vector3.forward * distance;
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -41,12 +44,15 @@ public class PlayerMovement : MonoBehaviour
 			}
 
 			float percentage = currLerpTime / lerpTime;
-			player.transform.position = Vector3.Lerp (startPos, endPos, percentage);
+			self.transform.position = Vector3.Lerp (startPos, endPos, percentage);
 		}
 	}
+	#endregion Movement
 
+	#region ChangeScenePlayer
 	public void ArenaScene()
 	{
 		SceneManager.LoadScene(2);
 	}
+	#endregion ChangeScenePlayer
 }

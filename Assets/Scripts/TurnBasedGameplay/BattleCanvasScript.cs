@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleCanvasScript : MonoBehaviour {
-
-    public static BattleCanvasScript Instance;
+public class BattleCanvasScript : MonoBehaviour 
+{
+	public static BattleCanvasScript Instance;
 
     // Use this for initialization
     void Awake()
@@ -13,7 +13,8 @@ public class BattleCanvasScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update () 
+	{
 //        if (GameManagerScript.Instance.curState != GameStates.BATTLE)
 //        {
 //            this.gameObject.SetActive(false);

@@ -38,9 +38,9 @@ public class BattleManagerScript : MonoBehaviour
 	}
 	#endregion Singleton
 
-	public PlayerBattleScript player;
-	public List<EnemyBattleScript> enemyList = new List<EnemyBattleScript>();
-	public EnemyBattleScript target;
+	public PlayerStatusScript player;
+	public List<EnemyStatusScript> enemyList = new List<EnemyStatusScript>();
+	public EnemyStatusScript target;
     //public Button attackButton;
     public BattleStates currTurn;
 	public Canvas battleCanvas;
@@ -65,13 +65,15 @@ public class BattleManagerScript : MonoBehaviour
 
 		for(int i = 0; i < enemies.Length; i++)
 		{
-			enemyList.Add(enemies[i].GetComponent<EnemyBattleScript>());
+			enemyList.Add(enemies[i].GetComponent<EnemyStatusScript>());
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		//if(PauseMenuManagerScript.Instance.paused) return;
+
 		UpdateBattleUI();
 
         if (currTurn != BattleStates.PLAYER_TURN)

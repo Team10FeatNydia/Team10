@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 public class AttackSwordScript : MonoBehaviour, IDragHandler, IEndDragHandler
 {
 
-    public PlayerBattleScript player;
-    public EnemyBattleScript target;
+	public PlayerStatusScript player;
+	public EnemyStatusScript target;
 
     Vector3 initPos;
     Vector3 direction;

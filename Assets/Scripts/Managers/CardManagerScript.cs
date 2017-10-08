@@ -48,7 +48,8 @@ public class CardManagerScript : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+	{
+		if(PauseMenuManagerScript.Instance.paused) return;
 	}
 }

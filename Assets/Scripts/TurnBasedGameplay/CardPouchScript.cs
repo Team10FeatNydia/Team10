@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
+public class CardPouchScript : MonoBehaviour, IPointerClickHandler 
+{
 
 	BattleManagerScript battleManager;
 	public GameObject[] displayedCards = new GameObject[5];
@@ -13,13 +14,15 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 	public int manaCheck;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		battleManager = BattleManagerScript.Instance;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+	{
+		if(PauseMenuManagerScript.Instance.paused) return;
 	}
 
 	void Attack()
@@ -105,21 +108,25 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 	{
 		Debug.Log("Click");
 
-		if(opened)
+		if(!PauseMenuManagerScript.Instance.paused)
 		{
-			if(battleManager.target != null && selectedCards.Count > 0)
+			Debug.Log("df");
+			if(opened)
 			{
-				Attack();
-				opened = false;
-				GetComponent<Image>().color = Color.white;
+				if(battleManager.target != null && selectedCards.Count > 0)
+				{
+					//Got Attacked
+					Attack();
+					opened = false;
+					GetComponent<Image>().color = Color.white;
+				}
+			}
+			else
+			{
+				opened = true;
+				GetComponent<Image>().color = Color.blue;
+				LayOutCards();
 			}
 		}
-		else
-		{
-			opened = true;
-			GetComponent<Image>().color = Color.blue;
-			LayOutCards();
-		}
-
 	}
 }
