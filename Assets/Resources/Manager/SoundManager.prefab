@@ -276,13 +276,13 @@ MonoBehaviour:
   brightness: 1
   audioClipInfoList:
   - audioClipID: 0
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 42f003412893a6c49a9086a0f8d23141, type: 3}
   - audioClipID: 1
     audioClip: {fileID: 0}
   - audioClipID: 2
     audioClip: {fileID: 0}
   - audioClipID: 3
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 7e334fc82c4e4d449999248e90b301c9, type: 3}
   - audioClipID: 4
     audioClip: {fileID: 0}
   - audioClipID: 5
@@ -293,6 +293,10 @@ MonoBehaviour:
     audioClip: {fileID: 0}
   - audioClipID: 8
     audioClip: {fileID: 8300000, guid: d02ae83790537ed4889a79605e5afcc4, type: 3}
+  - audioClipID: 300
+    audioClip: {fileID: 8300000, guid: e49a54d94a0b4d34796c0e7f487aa579, type: 3}
+  - audioClipID: 350
+    audioClip: {fileID: 8300000, guid: dcbeae9fbe6089241aa8c48d76089b3f, type: 3}
   bgmAudioSource: {fileID: 82079899537893518}
   sfxAudioSource: {fileID: 82626725019222596}
   brightnessMask: {fileID: 0}

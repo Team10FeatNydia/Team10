@@ -22,6 +22,14 @@ public enum AudioClipID
 	//UI
 	SFX_UI_BUTTON = 8,
 
+    //Map
+    BGM_MAP = 100,
+
+    //Battle
+    BGM_BATTLE_1 = 300,
+
+    SFX_BATTLE_TRANSACTION = 350,
+
 	TOTAL = 9001
 }
 
