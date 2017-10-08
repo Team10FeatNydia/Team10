@@ -9,9 +9,35 @@ public enum BattleStates
 	ENEMY_TURN
 }
 
-public class BattleManagerScript : MonoBehaviour {
+public class BattleManagerScript : MonoBehaviour 
+{
+	#region Singleton
+	private static BattleManagerScript mInstance;
 
-    public static BattleManagerScript Instance;
+	public static BattleManagerScript Instance
+	{
+		get
+		{
+			if(mInstance == null)
+			{
+				GameObject temp = GameObject.FindGameObjectWithTag("BattleManager");
+
+				if(temp == null)
+				{
+					Instantiate(ManagerControllerScript.Instance.battleManagerPrefab, Vector3.zero, Quaternion.identity);
+				}
+				mInstance = temp.GetComponent<BattleManagerScript>();
+			}
+			return mInstance;
+		}
+	}
+
+	public static bool CheckInstanceExit()
+	{
+		return mInstance;
+	}
+	#endregion Singleton
+
 	public PlayerBattleScript player;
 	public List<GameObject> enemyList = new List<GameObject>();
 	public EnemyBattleScript target;
@@ -22,12 +48,17 @@ public class BattleManagerScript : MonoBehaviour {
 	public Text lockedEnemyState;
 	public Text lockedEnemyHealth;
 
-    void Awake() {
-        Instance = this;
+    void Awake() 
+	{
+		if(BattleManagerScript.CheckInstanceExit())
+		{
+			Destroy(this.gameObject);
+		}
     }
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		GameObject[] enemies;
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
         currTurn = BattleStates.PLAYER_TURN;
