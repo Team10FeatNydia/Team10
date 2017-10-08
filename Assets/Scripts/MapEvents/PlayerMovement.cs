@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour 
 {
@@ -42,5 +43,10 @@ public class PlayerMovement : MonoBehaviour
 			float percentage = currLerpTime / lerpTime;
 			player.transform.position = Vector3.Lerp (startPos, endPos, percentage);
 		}
+	}
+
+	public void ArenaScene()
+	{
+		SceneManager.LoadScene(2);
 	}
 }
