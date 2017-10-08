@@ -9,42 +9,47 @@ public class PlayerMovementScript : MonoBehaviour
 	public PlayerManager self;
 
 	[Header("Movement")]
-	public float distance;
-	// Time to move from point A to point B
-	public float lerpTime = 5.0f;
-	private float currLerpTime = 0.0f;
-	private Vector3 startPos;
-	private Vector3 endPos;
+	private float startYPos;
+	private Vector3 endPoint;
+	private float duration = 5.0f;
 
 	[Header("BooleanSettings")]
-	public bool isTap = false;
+	private bool isTap = false;
 
 	#region Movement
 	// Use this for initialization
 	void Start () 
 	{
-		startPos = self.transform.position;
-		endPos = self.transform.position + Vector3.forward * distance;
+		startYPos = self.transform.position.y;
+		//startPos = self.transform.position;
+		//endPos = self.transform.position + Vector3.forward * distance;
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.touchCount == 1)
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 		{
-			isTap = true;
+			RaycastHit hit;
+			Ray ray;
+
+			ray = Camera.main.ScreenPointToRay (Input.GetTouch(0).position);
+
+			if(Physics.Raycast(ray, out hit))
+			{
+				isTap = true;
+				endPoint = hit.point;
+				endPoint.y = startYPos;
+			}
 		}
 
-		if (isTap == true) 
+		if(isTap && !Mathf.Approximately(gameObject.transform.position.magnitude, endPoint.magnitude))
 		{
-			currLerpTime += Time.deltaTime;
-			if (currLerpTime >= lerpTime) 
-			{
-				currLerpTime = lerpTime;
-			}
-
-			float percentage = currLerpTime / lerpTime;
-			self.transform.position = Vector3.Lerp (startPos, endPos, percentage);
+			gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPoint, 1 / (duration * (Vector3.Distance(gameObject.transform.position, endPoint))));
+		}
+		else if(isTap && Mathf.Approximately(gameObject.transform.position.magnitude, endPoint.magnitude))
+		{
+			isTap = false;
 		}
 	}
 	#endregion Movement
@@ -56,3 +61,4 @@ public class PlayerMovementScript : MonoBehaviour
 	}
 	#endregion ChangeScenePlayer
 }
+
