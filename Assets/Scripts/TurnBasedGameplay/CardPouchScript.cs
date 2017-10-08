@@ -3,26 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEditor.Animations;
 
-public class CardPouchScript : MonoBehaviour, IPointerClickHandler 
-{
+public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 
 	BattleManagerScript battleManager;
 	public GameObject[] displayedCards = new GameObject[5];
 	public List<CardScript> selectedCards = new List<CardScript>();
+	public Sprite cardEye;
+	public Sprite magicEye;
+	public Sprite defaultEye;
+	public Vector2 fingerStartPos = Vector2.zero;
+	public float minSwipeDist  = 10.0f;
+	public bool isSwipe = false;
 	public bool opened = false;
 	public int manaCheck;
 
+
+	private float touch1;
+	private Sprite currentEye;
+
 	// Use this for initialization
-	void Start () 
-	{
+	void Start () {
 		battleManager = BattleManagerScript.Instance;
+		GetComponent<Image>().sprite = defaultEye;
 	}
-	
+
 	// Update is called once per frame
-	void Update () 
-	{
-		if(PauseMenuManagerScript.Instance.paused) return;
+	void Update () {
+		Swipe();
+
 	}
 
 	void Attack()
@@ -104,29 +114,90 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
 		}
 	}
 
+	void Swipe()
+	{
+
+		if (Input.touchCount > 0){
+
+			foreach (Touch touch in Input.touches)
+			{
+				switch (touch.phase)
+				{
+				case TouchPhase.Began :
+					isSwipe = true;
+					fingerStartPos = touch.position;
+					touch1 = touch.position.y;
+					break;
+
+				case TouchPhase.Canceled :
+					isSwipe = false;
+					break;
+
+				case TouchPhase.Ended :
+
+					float swipeDist = (touch.position - fingerStartPos).magnitude;
+
+					if ( touch1 < 45) {
+
+
+						Debug.Log( swipeDist);
+
+						if (isSwipe &&  swipeDist > minSwipeDist){
+							Vector2 direction = touch.position - fingerStartPos;
+							Vector2 swipeType = Vector2.zero;
+
+
+							if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+							{
+								swipeType = Vector2.right * Mathf.Sign(direction.x);
+							}
+							else
+							{
+								swipeType = Vector2.up * Mathf.Sign(direction.y);
+							}
+
+							if(swipeType.x != 0.0f)
+							{
+								GetComponent<Image>().sprite = magicEye;
+
+							}
+
+							if(swipeType.y != 0.0f )
+							{
+								GetComponent<Image>().sprite = cardEye;     
+							}
+
+						}
+					}
+
+					break;
+				}
+			}
+		}
+
+	}
+
+
 	public void OnPointerClick(PointerEventData eventData)
 	{
 		Debug.Log("Click");
 
-		if(!PauseMenuManagerScript.Instance.paused)
+		if(opened)
 		{
-			Debug.Log("df");
-			if(opened)
+			if(battleManager.target != null && selectedCards.Count > 0)
 			{
-				if(battleManager.target != null && selectedCards.Count > 0)
-				{
-					//Got Attacked
-					Attack();
-					opened = false;
-					GetComponent<Image>().color = Color.white;
-				}
-			}
-			else
-			{
-				opened = true;
-				GetComponent<Image>().color = Color.blue;
-				LayOutCards();
+				Attack();
+				opened = false;
+
 			}
 		}
+		else
+		{
+			opened = true;
+			LayOutCards();
+			GetComponent<Image>().sprite = cardEye;
+
+		}
+
 	}
 }
