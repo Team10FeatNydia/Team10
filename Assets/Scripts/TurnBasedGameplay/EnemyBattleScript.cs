@@ -22,6 +22,7 @@ public class EnemyBattleScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+		player = BattleManagerScript.Instance.player;
         targeted = false;
         posX = this.gameObject.transform.position.x;
         posY = this.gameObject.transform.position.y;
@@ -59,16 +60,14 @@ public class EnemyBattleScript : MonoBehaviour {
 //            BattleManagerScript.Instance.currTurn = BattleStates.PLAYER_TURN;
 //        }
 
-        if (health <= 0)
-        {
-			for(int i = 0; i < BattleManagerScript.Instance.enemyList.Count; i++)
-			{
-				BattleManagerScript.Instance.enemyList.Remove(this.gameObject);
-			}
-            Destroy(this.gameObject);
-        }
+        
 
     }
+
+	public void Attack()
+	{
+		player.health -= attack;
+	}
 
 	public void OnMouseDown()
 	{
@@ -77,6 +76,15 @@ public class EnemyBattleScript : MonoBehaviour {
 		{
 			BattleManagerScript.Instance.target = this;
 			GetComponent<MeshRenderer>().material.color = Color.white;
+		}
+	}
+
+	public void CheckHealth()
+	{
+		if (health <= 0)
+		{
+			BattleManagerScript.Instance.enemyList.Remove(this);
+			Destroy(this.gameObject);
 		}
 	}
 

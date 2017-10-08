@@ -32,6 +32,7 @@ public class CardManagerScript : MonoBehaviour
 	#endregion Singleton
 
 	public List<CardDescription> cardList = new List<CardDescription>();
+	public GameObject cardPrefab;
 
 	void Awake()
 	{

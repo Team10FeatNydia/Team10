@@ -39,7 +39,7 @@ public class BattleManagerScript : MonoBehaviour
 	#endregion Singleton
 
 	public PlayerBattleScript player;
-	public List<GameObject> enemyList = new List<GameObject>();
+	public List<EnemyBattleScript> enemyList = new List<EnemyBattleScript>();
 	public EnemyBattleScript target;
     //public Button attackButton;
     public BattleStates currTurn;
@@ -65,7 +65,7 @@ public class BattleManagerScript : MonoBehaviour
 
 		for(int i = 0; i < enemies.Length; i++)
 		{
-			enemyList.Add(enemies[i]);
+			enemyList.Add(enemies[i].GetComponent<EnemyBattleScript>());
 		}
 	}
 	
@@ -78,7 +78,7 @@ public class BattleManagerScript : MonoBehaviour
         {
 			for(int i = 0; i < enemyList.Count; i++)
 			{
-				player.health -= enemyList[i].GetComponent<EnemyBattleScript>().attack;
+				enemyList[i].Attack();
 			}
 
 			currTurn = BattleStates.PLAYER_TURN;
