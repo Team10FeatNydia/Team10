@@ -37,7 +37,15 @@ public class CardScript : MonoBehaviour, IPointerClickHandler {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (selected)
+        {
+            GetComponent<Image>().color = Color.blue;
+        }
+
+        else
+        {
+            GetComponent<Image>().color = Color.white;
+        }
 	}
 
 	public void UpdateStats()

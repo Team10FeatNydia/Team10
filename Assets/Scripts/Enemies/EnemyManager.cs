@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour 
 {
 	[Header("System")]
-	public new CapsuleCollider collider;
+    public new MeshCollider collider;
 	public new Rigidbody rigidbody;
 	public new SpriteRenderer renderer;
 	public Animator animator;
@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour
 
 	void Awake()
 	{
-		collider = GetComponent<CapsuleCollider>();
+        collider = GetComponent<MeshCollider>();
 		rigidbody = GetComponent<Rigidbody>();
 		renderer = GetComponentInChildren<SpriteRenderer>();
 		animator = GetComponentInChildren<Animator>();

@@ -22,11 +22,11 @@ GameObject:
   - component: {fileID: 114757985770218306}
   m_Layer: 0
   m_Name: SpellsManager
-  m_TagString: Untagged
+  m_TagString: SpellsManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4070504406543472
 Transform:
   m_ObjectHideFlags: 1
@@ -54,11 +54,11 @@ MonoBehaviour:
   spellsList:
   - spellsType: 0
     manaCost: 5
-    spellsImage: {fileID: 0}
+    spellsImage: {fileID: 21300000, guid: c77c1767331971747be5b10a8f903a14, type: 3}
     isSpawned: 0
   - spellsType: 1
     manaCost: 5
-    spellsImage: {fileID: 0}
+    spellsImage: {fileID: 21300000, guid: f614349381d81b84a86e4020cf923386, type: 3}
     isSpawned: 0
   spellsPrefab: {fileID: 1201739924728978, guid: 303b622c73387b445b45aea59cf9ea05,
     type: 2}

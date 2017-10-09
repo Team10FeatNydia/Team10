@@ -29,6 +29,19 @@ public class SpellsScript : MonoBehaviour, IPointerClickHandler
     public bool selected;
     public Text myManaCost;
 
+
+    void Update()
+    {
+        if (selected)
+        {
+            GetComponent<Image>().color = Color.blue;
+        }
+
+        else
+        {
+            GetComponent<Image>().color = Color.white;
+        }
+    }
         public void UpdateStats()
         {
             myManaCost.text = mySpells.manaCost.ToString();

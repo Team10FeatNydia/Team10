@@ -44,9 +44,7 @@ public class BattleManagerScript : MonoBehaviour
     //public Button attackButton;
     public BattleStates currTurn;
 	public Canvas battleCanvas;
-	public Text playerManaCount;
-	public Text lockedEnemyState;
-	public Text lockedEnemyHealth;
+
 
     void Awake() 
 	{
@@ -74,7 +72,7 @@ public class BattleManagerScript : MonoBehaviour
 	{
 		//if(PauseMenuManagerScript.Instance.paused) return;
 
-		UpdateBattleUI();
+		
 
         if (currTurn != BattleStates.PLAYER_TURN)
         {
@@ -91,31 +89,5 @@ public class BattleManagerScript : MonoBehaviour
         }
     }
 
-	void UpdateBattleUI()
-	{
-		playerManaCount.text = player.manaPoints.ToString();
 
-		if (target != null) {
-			
-			lockedEnemyHealth.enabled = true;
-			lockedEnemyState.text = "Enemy Locked On";
-			lockedEnemyHealth.text = "EnemyHealth" + target.health.ToString ();
-			//hpText.color = Color.Lerp (hpText.color, Color.red, Time.deltaTime * easeTime);
-//			if (target.health <= 0) {
-//				lockedEnemyState.text = "you win, enemy dead";
-//			}
-		} 
-		else 
-		{
-			lockedEnemyState.text = "Please Select a Enemy";
-
-			lockedEnemyHealth.enabled = false;
-			lockedEnemyHealth.color = Color.Lerp(lockedEnemyHealth.color, Color.red, Time.deltaTime);
-
-			if(enemyList.Count <= 0)
-			{
-				lockedEnemyState.text = "you win, enemy dead";
-			}
-		}
-	}
 }

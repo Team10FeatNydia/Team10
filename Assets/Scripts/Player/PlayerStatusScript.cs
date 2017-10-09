@@ -9,8 +9,10 @@ public class PlayerStatusScript : MonoBehaviour
 	public PlayerManager self;
 
 	[Header("Stats")]
+    public int maxHealth = 100;
 	public int health;
 	public int manaPoints;
+
 
 //	[Header("Movement")]
 //	public float movementSpeed;
@@ -21,6 +23,12 @@ public class PlayerStatusScript : MonoBehaviour
 	public int attack;
 	public float invincibleTimer;
 	public float invincibleDuration;
+
+
+    void Start()
+    {
+        //health = maxHealth ;
+    }
 
 	void Update()
 	{
@@ -44,6 +52,8 @@ public class PlayerStatusScript : MonoBehaviour
 	{
 		SceneManager.LoadScene(self.respawnScene);
 	}
+
+  
 
 	public void Quit()
 	{

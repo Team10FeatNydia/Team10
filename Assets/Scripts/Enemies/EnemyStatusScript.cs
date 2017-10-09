@@ -10,6 +10,7 @@ public class EnemyStatusScript : MonoBehaviour
 
 	[Header("Stats")]
 	public int health;
+    public int maxHealth;
 	public int attack;
 	float posX;
 	float posY;

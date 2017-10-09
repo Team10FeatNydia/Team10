@@ -41,6 +41,8 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
+
+
         Swipe();
         if (BattleManagerScript.Instance.currTurn == BattleStates.ENEMY_TURN)
         {
@@ -104,12 +106,14 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
         {
             if (selectedSpells[i].mySpells.spellsType == SpellsType.ATTACK_SPELL)
             {
+                spellsHealbool = false;
                 spellsAttackbool = true;
                 Debug.Log("Spells Attack");
             }
             else if (selectedSpells[i].mySpells.spellsType == SpellsType.HEAL_SPELL)
             {
                 spellsHealbool = true;
+                spellsAttackbool = false;
                 Debug.Log("Spells Heal");
             }
 
@@ -117,7 +121,7 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
 
         for (int i = 0; i < displayedSpells.Length; i++)
         {
-            Debug.Log("dewstroty spell");
+            Debug.Log("destroty spell");
             Destroy(displayedSpells[i].gameObject);
         }
     }
@@ -236,8 +240,10 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
                     case TouchPhase.Ended:
 
                         float swipeDist = (touch.position - fingerStartPos).magnitude;
+                        Debug.Log("swipedist    " + swipeDist);
+                        Debug.Log("touch1   " + touch1);
 
-                        if (touch1 < 45)
+                        if (touch1 < 250)
                         {
 
                             if (isSwipe && swipeDist > minSwipeDist)
@@ -257,6 +263,7 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
 
                                 if (swipeType.x != 0.0f)
                                 {
+                                    Debug.Log("swiped");
                                     GetComponent<Image>().sprite = spellsEye;
                                     cardAction = false;
                                     spellsAction = true;
@@ -264,6 +271,7 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
 
                                 if (swipeType.y != 0.0f)
                                 {
+                                    Debug.Log("swiped");
                                     GetComponent<Image>().sprite = cardEye;
                                     cardAction = true;
                                     spellsAction = false;
