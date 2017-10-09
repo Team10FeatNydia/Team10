@@ -57,7 +57,7 @@ public class PlayerMovementScript : MonoBehaviour
 	#region ChangeScenePlayer
 	public void ArenaScene()
 	{
-		SceneManager.LoadScene(2);
+		SceneManager.LoadScene(4);
 	}
 	#endregion ChangeScenePlayer
 }
