@@ -45,10 +45,10 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 			}
 			else if(selectedCards[i].myCard.cardType == CardType.HEAL)
 			{
-				battleManager.player.health += selectedCards[i].myCard.cardEffect;
+				battleManager.player.localPlayerData.health += selectedCards[i].myCard.cardEffect;
 			}
 
-			battleManager.player.manaPoints -= selectedCards[i].myCard.manaCost;
+			battleManager.player.localPlayerData.manaPoints -= selectedCards[i].myCard.manaCost;
 		}
 
 		Debug.Log("Attack");
@@ -69,7 +69,7 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 
 	void LayOutCards()
 	{
-		manaCheck = battleManager.player.manaPoints;
+		manaCheck = battleManager.player.localPlayerData.manaPoints;
 		selectedCards.Clear();
 
 		for(int i = 0; i < CardManagerScript.Instance.cardList.Count; i++)

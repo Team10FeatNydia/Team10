@@ -40,7 +40,7 @@ public class EnemyStatusScript : MonoBehaviour
 
 	public void Attack()
 	{
-		player.health -= attack;
+		player.localPlayerData.health -= attack;
 	}
 
 	public void OnMouseDown()

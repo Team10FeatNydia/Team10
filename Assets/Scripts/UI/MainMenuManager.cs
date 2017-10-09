@@ -11,6 +11,7 @@ public class MainMenuManager : MonoBehaviour
 
 	public void StartGame()
 	{
+		//PlayerStatistics = new PlayerStatistics();
 		SceneManager.LoadScene(startGameScene);
 	}
 

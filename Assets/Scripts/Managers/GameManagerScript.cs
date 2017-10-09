@@ -32,8 +32,6 @@ public class GameManagerScript : MonoBehaviour
 	}
 	#endregion Singleton
 
-
-
 	void Awake()
 	{
 		if(GameManagerScript.CheckInstanceExist())
@@ -41,4 +39,8 @@ public class GameManagerScript : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
+
+	#region SaveData
+	public PlayerStatistics savedPlayerData = new PlayerStatistics();
+	#endregion SaveData
 }
