@@ -93,7 +93,7 @@ public class BattleManagerScript : MonoBehaviour
 
 	void UpdateBattleUI()
 	{
-		playerManaCount.text = player.manaPoints.ToString();
+		playerManaCount.text = player.localPlayerData.manaPoints.ToString();
 
 		if (target != null) {
 			

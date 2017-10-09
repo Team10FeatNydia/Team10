@@ -9,8 +9,9 @@ public class PlayerStatusScript : MonoBehaviour
 	public PlayerManager self;
 
 	[Header("Stats")]
-	public int health;
-	public int manaPoints;
+	public PlayerStatistics localPlayerData = new PlayerStatistics();
+	//public int health;
+	//public int manaPoints;
 
 //	[Header("Movement")]
 //	public float movementSpeed;
@@ -21,6 +22,13 @@ public class PlayerStatusScript : MonoBehaviour
 	public int attack;
 	public float invincibleTimer;
 	public float invincibleDuration;
+
+	void Start()
+	{
+		localPlayerData = GameManagerScript.Instance.savedPlayerData;
+		//health = GameManagerScript.Instance.health;
+		//manaPoints = GameManagerScript.Instance.manaPoints;
+	}
 
 	void Update()
 	{
@@ -59,5 +67,10 @@ public class PlayerStatusScript : MonoBehaviour
 			//Player receive damage sound script
 			//SoundManagerScript.Instance.PlaySFX(AudioClipID.SFX_PL_RECEIVEDMG);
 		}
+	}
+
+	public void SaveData()
+	{
+		GameManagerScript.Instance.savedPlayerData = localPlayerData;
 	}
 }
