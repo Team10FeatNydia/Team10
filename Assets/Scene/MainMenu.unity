@@ -2668,7 +2668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79fda13b7a2baae4e84cfc6d5a89107f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startGameScene: MainScene
+  startGameScene: Map
   menuWindows:
   - {fileID: 664594086}
   - {fileID: 1142346759}

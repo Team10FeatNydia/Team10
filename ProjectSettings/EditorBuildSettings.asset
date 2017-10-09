@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scene/MainScene.unity
     guid: d273abdaf377e454fa9343b9bfc40ce8
   - enabled: 1
-    path: Assets/Yiling - Map/TestLinkingToArenaScene.unity
+    path: Assets/Scene/TestLinkingToArenaScene.unity
     guid: 78c66edab8be87648818ae5add1338aa
   - enabled: 1
-    path: Assets/Yiling - Map/Map.unity
+    path: Assets/Scene/Map.unity
     guid: 398453eab4010184484ec366604e4207
