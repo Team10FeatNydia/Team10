@@ -40,10 +40,12 @@ public class ManagerControllerScript : MonoBehaviour
 	public GameObject pauseMenuManagerPrefab;
 	public GameObject battleManagerPrefab;
 	public GameObject cardManagerPrefab;
+    public GameObject spellsManagerPrefab;
 
 	[Header("In-Scene Managers")]
 	public SoundManagerScript soundManager;
 	public GameManagerScript gameManager;
 	public BattleManagerScript battleManager;
 	public CardManagerScript cardManager;
+    public SpellsManagerScript spellsManager;
 }
