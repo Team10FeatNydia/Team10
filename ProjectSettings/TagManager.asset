@@ -10,7 +10,6 @@ TagManager:
   - BattleManager
   - CardManager
   - PauseMenuManager
-  - SpellsManager
   layers:
   - Default
   - TransparentFX

@@ -9,24 +9,17 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 
 	BattleManagerScript battleManager;
 	public GameObject[] displayedCards = new GameObject[5];
-    public GameObject[] displayedSpells = new GameObject[2];
-    public List<CardScript> selectedCards = new List<CardScript>();
-    public List<SpellsScript> selectedSpells = new List<SpellsScript>();
-    public Sprite cardEye;
-	public Sprite spellsEye;
+	public List<CardScript> selectedCards = new List<CardScript>();
+	public Sprite cardEye;
+	public Sprite magicEye;
 	public Sprite defaultEye;
 	public Vector2 fingerStartPos = Vector2.zero;
 	public float minSwipeDist  = 10.0f;
 	public bool isSwipe = false;
 	public bool opened = false;
-    public bool cardAction;
-    public bool spellsAction;
 	public int manaCheck;
 
-    private int spellsAttack = 0;
-    private int spellsHeal = 0;
-    private bool spellsAttackbool = false;
-    private bool spellsHealbool = false;
+
 	private float touch1;
 	private Sprite currentEye;
 
@@ -39,44 +32,23 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 	// Update is called once per frame
 	void Update () {
 		Swipe();
-        if (BattleManagerScript.Instance.currTurn == BattleStates.ENEMY_TURN)
-        {
-            spellsHealbool=false;
-            spellsAttackbool = false;
-        }
+
 	}
 
 	void Attack()
 	{
 		for(int i = 0; i < selectedCards.Count; i++)
 		{
-            if (spellsAttackbool == true)
-            {
-                spellsAttack += selectedCards.Count;
-                Debug.Log("spellsattack");
-                Debug.Log(spellsAttack);
-            }
-            else if (spellsHealbool == true)
-            {
-                spellsHeal += selectedCards.Count;
-                Debug.Log("spellsheal");
-                Debug.Log(spellsHeal);
-            }
-
-            if (selectedCards[i].myCard.cardType == CardType.ATTACK)
+			if(selectedCards[i].myCard.cardType == CardType.ATTACK)
 			{
-				battleManager.target.health -= selectedCards[i].myCard.cardEffect + spellsAttack;
-                battleManager.player.health += spellsHeal;
-               
-            }
-
+				battleManager.target.health -= selectedCards[i].myCard.cardEffect;
+			}
 			else if(selectedCards[i].myCard.cardType == CardType.HEAL)
 			{
-				battleManager.player.health += selectedCards[i].myCard.cardEffect + spellsHeal;
-                battleManager.target.health -= spellsAttack;
-            }
-            
-            battleManager.player.manaPoints -= selectedCards[i].myCard.manaCost;
+				battleManager.player.health += selectedCards[i].myCard.cardEffect;
+			}
+
+			battleManager.player.manaPoints -= selectedCards[i].myCard.manaCost;
 		}
 
 		Debug.Log("Attack");
@@ -94,30 +66,6 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 			Destroy(displayedCards[i].gameObject);
 		}
 	}
-
-    void Spells()
-    {
-        for (int i = 0; i < selectedSpells.Count; i++)
-        {
-            if (selectedSpells[i].mySpells.spellsType == SpellsType.ATTACK_SPELL)
-            {
-               spellsAttackbool=true;
-                Debug.Log("Spells Attack");
-            }
-            else if (selectedSpells[i].mySpells.spellsType == SpellsType.HEAL_SPELL)
-            {
-                spellsHealbool=true;
-                Debug.Log("Spells Heal");
-            }
-           
-        }
-
-        for (int i = 0; i < displayedSpells.Length; i++)
-        {
-            Debug.Log("dewstroty spell");
-            Destroy(displayedSpells[i].gameObject);
-        }
-    }
 
 	void LayOutCards()
 	{
@@ -162,53 +110,9 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 			newCard.transform.SetParent(this.transform.parent, true);
 
 			displayedCards[i] = newCard;
-            displayedCards[i].GetComponent<CardScript>().UpdateStats();
+			displayedCards[i].GetComponent<CardScript>().UpdateStats();
 		}
 	}
-
-    void LayoutSpells()
-    {
-        manaCheck = battleManager.player.manaPoints;
-        selectedSpells.Clear();
-
-        for (int i = 0; i < SpellsManagerScript.Instance.spellsList.Count; i++)
-        {
-            SpellsDescription tempSpells;
-            tempSpells = SpellsManagerScript.Instance.spellsList[i];
-            tempSpells.isSpawned = false;
-            SpellsManagerScript.Instance.spellsList[i] = tempSpells;
-        }
-        
-        for (int i = 0; i < SpellsManagerScript.Instance.spellsList.Count; i++)
-        {
-            bool exitLoop = false;
-            SpellsDescription tempSpells;
-
-            do
-            {
-                if (!SpellsManagerScript.Instance.spellsList[i].isSpawned)
-                {
-                    tempSpells = SpellsManagerScript.Instance.spellsList[i];
-                    tempSpells.isSpawned = true;
-                    SpellsManagerScript.Instance.spellsList[i] = tempSpells;
-                    exitLoop = true;
-                }
-            } while (!exitLoop);
-
-            GameObject newSpells = Instantiate(SpellsManagerScript.Instance.spellsPrefab, this.transform) as GameObject;
-
-            SpellsScript spellsScript = newSpells.GetComponent<SpellsScript>();
-            spellsScript.mySpells = SpellsManagerScript.Instance.spellsList[i];
-            spellsScript.cardPouch = this;
-
-            newSpells.GetComponent<RectTransform>().localPosition = new Vector3(-135f * i - 150f, 0f, 0f);
-            newSpells.transform.SetParent(this.transform.parent, true);
-
-            displayedSpells[i] = newSpells;
-            displayedSpells[i].GetComponent<SpellsScript>().UpdateStats();
-        }
-        
-    }
 
 	void Swipe()
 	{
@@ -235,6 +139,9 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 
 					if ( touch1 < 45) {
 
+
+						Debug.Log( swipeDist);
+
 						if (isSwipe &&  swipeDist > minSwipeDist){
 							Vector2 direction = touch.position - fingerStartPos;
 							Vector2 swipeType = Vector2.zero;
@@ -251,17 +158,14 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 
 							if(swipeType.x != 0.0f)
 							{
-								GetComponent<Image>().sprite = spellsEye;
-                                cardAction = false;
-                                spellsAction = true;
+								GetComponent<Image>().sprite = magicEye;
+
 							}
 
 							if(swipeType.y != 0.0f )
 							{
-								GetComponent<Image>().sprite = cardEye;
-                                cardAction = true;
-                                spellsAction = false;
-                            }
+								GetComponent<Image>().sprite = cardEye;     
+							}
 
 						}
 					}
@@ -278,39 +182,22 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler {
 	{
 		Debug.Log("Click");
 
-        if (opened && cardAction)
-        {
-            if (battleManager.target != null && selectedCards.Count > 0)
-            {
-                Attack();
-                opened = false;
+		if(opened)
+		{
+			if(battleManager.target != null && selectedCards.Count > 0)
+			{
+				Attack();
+				opened = false;
 
-            }
-        }
+			}
+		}
+		else
+		{
+			opened = true;
+			LayOutCards();
+			GetComponent<Image>().sprite = cardEye;
 
-        else if (opened && spellsAction)
-        {
-            if (selectedSpells.Count == 1)
-            {
-                Spells();
-                opened = false;
-
-            }
-        }
-        else if (cardAction)
-        {
-            opened = true;
-            LayOutCards();
-            GetComponent<Image>().sprite = cardEye;
-
-        }
-
-        else if (spellsAction)
-        {
-            opened = true;
-            LayoutSpells();
-            GetComponent<Image>().sprite = spellsEye;
-        }
+		}
 
 	}
 }
