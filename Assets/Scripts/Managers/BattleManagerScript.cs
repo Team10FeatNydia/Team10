@@ -80,6 +80,7 @@ public class BattleManagerScript : MonoBehaviour
         {
 			for(int i = 0; i < enemyList.Count; i++)
 			{
+                
 				enemyList[i].Attack();
 			}
 
