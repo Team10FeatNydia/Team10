@@ -14,7 +14,11 @@ public class EnemyHealthBar : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        bar.fillAmount = ( BattleManagerScript.Instance.target.health* 100f / BattleManagerScript.Instance.target.maxHealth) / 100;
+
+		if (BattleManagerScript.Instance.target != null) 
+		{
+			bar.fillAmount = (BattleManagerScript.Instance.target.health * 100f / BattleManagerScript.Instance.target.maxHealth) / 100;
+		}
     }
 }
 
