@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4264140364306822}
-  - component: {fileID: 114701951712751960}
+  - component: {fileID: 114782072120334932}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: CardManager
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114701951712751960
+--- !u!114 &114782072120334932
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

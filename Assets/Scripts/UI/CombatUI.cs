@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class CombatUI : MonoBehaviour {
+public class CombatUI : MonoBehaviour 
+{
 
     public PlayerStatusScript player;
     public Text playerManaCount;
     public Text lockedEnemyState;
     public Text lockedEnemyHealth;
     public Text playerHealthText;
+	public string sceneName;
    // public Image bar;
 
 
@@ -36,9 +39,9 @@ public class CombatUI : MonoBehaviour {
     void UpdateBattleUI()
     {
         
-        playerManaCount.text = player.manaPoints.ToString();
+        playerManaCount.text = player.localPlayerData.manaPoints.ToString();
 
-        playerHealthText.text = player.health + "/" + player.maxHealth.ToString();
+		playerHealthText.text = player.localPlayerData.health + "/" + player.localPlayerData.maxHealth.ToString();
 
 
 
@@ -58,7 +61,7 @@ public class CombatUI : MonoBehaviour {
 
             if(BattleManagerScript.Instance.enemyList.Count <= 0)
             {
-                lockedEnemyState.text = "Enemy is dead";
+				SceneManager.LoadScene(sceneName);
             }
         }
     }

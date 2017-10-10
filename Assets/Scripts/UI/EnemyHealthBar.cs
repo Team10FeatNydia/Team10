@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealthBar : MonoBehaviour {
+public class EnemyHealthBar : MonoBehaviour 
+{
 
     private Image bar;
 
     // Use this for initialization
-    void Start () {
+    void Start () 
+	{
         bar = this.GetComponent<Image>();
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update () 
+	{
 
 		if (BattleManagerScript.Instance.target != null) 
 		{

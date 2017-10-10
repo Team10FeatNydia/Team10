@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor.Animations;
 
 public class CardPouchScript : MonoBehaviour, IPointerClickHandler
 {
@@ -71,17 +70,17 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
             if (selectedCards[i].myCard.cardType == CardType.ATTACK)
             {
                 battleManager.target.health -= selectedCards[i].myCard.cardEffect + spellsAttack;
-                battleManager.player.health += spellsHeal;
+				battleManager.player.localPlayerData.health += spellsHeal;
 
             }
 
             else if (selectedCards[i].myCard.cardType == CardType.HEAL)
             {
-                battleManager.player.health += selectedCards[i].myCard.cardEffect + spellsHeal;
+				battleManager.player.localPlayerData.health += selectedCards[i].myCard.cardEffect + spellsHeal;
                 battleManager.target.health -= spellsAttack;
             }
 
-            battleManager.player.manaPoints -= selectedCards[i].myCard.manaCost;
+			battleManager.player.localPlayerData.manaPoints -= selectedCards[i].myCard.manaCost;
         }
 
         Debug.Log("Attack");
@@ -114,7 +113,7 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
                 spellsHealbool = true;
                 spellsAttackbool = false;
             }
-            battleManager.player.manaPoints -= selectedSpells[i].mySpells.manaCost;
+			battleManager.player.localPlayerData.manaPoints -= selectedSpells[i].mySpells.manaCost;
         }
 
         for (int i = 0; i < displayedSpells.Length; i++)
@@ -127,7 +126,7 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
 
     void LayOutCards()
     {
-        manaCheck = battleManager.player.manaPoints;
+		manaCheck = battleManager.player.localPlayerData.manaPoints;
         selectedCards.Clear();
 
         for (int i = 0; i < CardManagerScript.Instance.cardList.Count; i++)
@@ -174,7 +173,7 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
 
     void LayoutSpells()
     {
-        manaCheck = battleManager.player.manaPoints;
+		manaCheck = battleManager.player.localPlayerData.manaPoints;
         selectedSpells.Clear();
 
         for (int i = 0; i < SpellsManagerScript.Instance.spellsList.Count; i++)

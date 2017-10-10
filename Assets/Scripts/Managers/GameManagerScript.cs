@@ -32,7 +32,7 @@ public class GameManagerScript : MonoBehaviour
 	}
 	#endregion Singleton
 
-
+	public PlayerStatistics savedPlayerData = new PlayerStatistics();
 
 	void Awake()
 	{

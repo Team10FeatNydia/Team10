@@ -61,7 +61,10 @@ MonoBehaviour:
     type: 2}
   cardManagerPrefab: {fileID: 1922697052120150, guid: dd22ce55a7d576042989b91306b514cf,
     type: 2}
+  spellsManagerPrefab: {fileID: 1088466265865698, guid: 92c8afdf1559b9d4490faf920cf82fca,
+    type: 2}
   soundManager: {fileID: 0}
   gameManager: {fileID: 0}
   battleManager: {fileID: 0}
   cardManager: {fileID: 0}
+  spellsManager: {fileID: 0}
