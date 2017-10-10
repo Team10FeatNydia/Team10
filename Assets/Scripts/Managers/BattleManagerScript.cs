@@ -44,6 +44,7 @@ public class BattleManagerScript : MonoBehaviour
     //public Button attackButton;
     public BattleStates currTurn;
 	public Canvas battleCanvas;
+    int manaregen;
 
 
     void Awake() 
@@ -57,6 +58,7 @@ public class BattleManagerScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+        manaregen = player.manaPoints;
 		GameObject[] enemies;
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
         currTurn = BattleStates.PLAYER_TURN;
@@ -79,9 +81,14 @@ public class BattleManagerScript : MonoBehaviour
 			for(int i = 0; i < enemyList.Count; i++)
 			{
 				enemyList[i].Attack();
+                
 			}
-
-			currTurn = BattleStates.PLAYER_TURN;
+            player.manaPoints += manaregen;
+            if (player.manaPoints >= 15)
+            {
+                player.manaPoints = 15;
+            }
+            currTurn = BattleStates.PLAYER_TURN;
         }
         else if (currTurn == BattleStates.PLAYER_TURN)
         {

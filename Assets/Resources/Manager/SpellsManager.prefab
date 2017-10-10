@@ -54,10 +54,12 @@ MonoBehaviour:
   spellsList:
   - spellsType: 0
     manaCost: 5
+    description: +1 Attack for every selected card
     spellsImage: {fileID: 21300000, guid: c77c1767331971747be5b10a8f903a14, type: 3}
     isSpawned: 0
   - spellsType: 1
     manaCost: 5
+    description: +1 Heal for every selected card
     spellsImage: {fileID: 21300000, guid: f614349381d81b84a86e4020cf923386, type: 3}
     isSpawned: 0
   spellsPrefab: {fileID: 1201739924728978, guid: 303b622c73387b445b45aea59cf9ea05,

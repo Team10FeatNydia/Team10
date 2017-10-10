@@ -57,13 +57,13 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
         {
             if (spellsAttackbool == true)
             {
-                spellsAttack += selectedCards.Count;
+                spellsAttack = 1;
                 Debug.Log("spellsattack");
                 Debug.Log(spellsAttack);
             }
             else if (spellsHealbool == true)
             {
-                spellsHeal += selectedCards.Count;
+                spellsHeal = 1;
                 Debug.Log("spellsheal");
                 Debug.Log(spellsHeal);
             }
@@ -108,22 +108,21 @@ public class CardPouchScript : MonoBehaviour, IPointerClickHandler
             {
                 spellsHealbool = false;
                 spellsAttackbool = true;
-                Debug.Log("Spells Attack");
             }
             else if (selectedSpells[i].mySpells.spellsType == SpellsType.HEAL_SPELL)
             {
                 spellsHealbool = true;
                 spellsAttackbool = false;
-                Debug.Log("Spells Heal");
             }
-
+            battleManager.player.manaPoints -= selectedSpells[i].mySpells.manaCost;
         }
 
         for (int i = 0; i < displayedSpells.Length; i++)
         {
-            Debug.Log("destroty spell");
             Destroy(displayedSpells[i].gameObject);
         }
+
+       
     }
 
     void LayOutCards()

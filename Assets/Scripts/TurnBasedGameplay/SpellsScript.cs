@@ -18,6 +18,7 @@ public struct SpellsDescription
     public SpellsType spellsType;
     //public int spellsUsageAmount;
     public int manaCost;
+    public string description;
     public Sprite spellsImage;
     public bool isSpawned;
 }
@@ -28,6 +29,7 @@ public class SpellsScript : MonoBehaviour, IPointerClickHandler
     public CardPouchScript cardPouch;
     public bool selected;
     public Text myManaCost;
+    public Text myDescription;
 
 
     void Update()
@@ -44,7 +46,8 @@ public class SpellsScript : MonoBehaviour, IPointerClickHandler
     }
         public void UpdateStats()
         {
-            myManaCost.text = mySpells.manaCost.ToString();
+            myManaCost.text = "Mana Cost: " + mySpells.manaCost.ToString();
+            myDescription.text =  mySpells.description.ToString();
             GetComponent<Image>().sprite = mySpells.spellsImage;
         }
 

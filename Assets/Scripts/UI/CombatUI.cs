@@ -51,14 +51,14 @@ public class CombatUI : MonoBehaviour {
         } 
         else 
         {
-            lockedEnemyState.text = "Please Select a Enemy";
+            lockedEnemyState.text = "Please select an enemy";
 
             lockedEnemyHealth.enabled = false;
            // lockedEnemyHealth.color = Color.Lerp(lockedEnemyHealth.color, Color.red, Time.deltaTime);
 
             if(BattleManagerScript.Instance.enemyList.Count <= 0)
             {
-                lockedEnemyState.text = "you win, enemy dead";
+                lockedEnemyState.text = "Enemy is dead";
             }
         }
     }

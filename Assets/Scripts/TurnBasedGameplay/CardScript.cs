@@ -17,6 +17,7 @@ public struct CardDescription
 	public CardType cardType;
 	public int cardEffect;
 	public int manaCost;
+    public string description;
 	public Sprite cardImage;
 	public bool isSpawned;
 }
@@ -29,6 +30,7 @@ public class CardScript : MonoBehaviour, IPointerClickHandler {
 
 	public Text myDmg;
 	public Text myManaCost;
+    public Text myDescription;
 
 	// Use this for initialization
 	void Start () {
@@ -52,6 +54,7 @@ public class CardScript : MonoBehaviour, IPointerClickHandler {
 	{
 		myDmg.text = myCard.cardEffect.ToString();
 		myManaCost.text = myCard.manaCost.ToString();
+        myDescription.text = myCard.description.ToString();
 		GetComponent<Image>().sprite = myCard.cardImage;
 	}
 
